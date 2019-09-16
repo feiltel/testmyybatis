@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="../css/test.css?v=1">
+</head>
+<body>
+<div id="app" style="height: 100%">
+    <el-container style="height: 100%; border: 1px solid #eee">
+        <el-header>Header</el-header>
+        <el-container>
+            <el-aside width="200px">Aside</el-aside>
+            <el-main>
+                <template>
+                    <el-table
+                            :data="tableData"
+                            style="width: 100%">
+                        <el-table-column
+                                prop="date"
+                                label="日期"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="name"
+                                label="姓名"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="address"
+                                label="地址">
+                        </el-table-column>
+                    </el-table>
+                </template>
+            </el-main>
+        </el-container>
+    </el-container>
+
+</div>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="../js/test.js"></script>
+</body>
+</html>

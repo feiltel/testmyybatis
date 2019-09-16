@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nut2014.mapper.UserMapper">
+
+    <!--**************增**********************************************************************-->
+    <insert id="add" parameterType="com.nut2014.entity.User">
+        INSERT INTO user (
+            userName,
+            passWord,
+            realName,
+            avatarPath
+        ) VALUES (
+            #{userName},
+            #{passWord},
+            #{realName},
+            #{avatarPath}
+        );
+    </insert>
+
+    <!--**************删********************************************************-->
+    <delete id="delete">
+        delete from user
+        where id = #{id}
+    </delete>
+
+    <!--**************改********************************************************-->
+    <update id="update" parameterType="com.nut2014.entity.User">
+        update user
+        set
+            userName   = #{userName},
+            passWord   = #{passWord},
+            realName   = #{realName},
+            avatarPath = #{avatarPath}
+        where id = #{id}
+    </update>
+
+    <!--**************查********************************************************-->
+    <select id="get" resultType="com.nut2014.entity.User">select *
+                                                          from user
+                                                          where id = #{id}</select>
+
+
+    <select id="getAll" resultType="com.nut2014.entity.User">select *
+                                                             from user</select>
+
+    <select id="getUserByUserName" resultType="com.nut2014.entity.User">select *
+                                                                        from user
+                                                                        where userName = #{userName}</select>
+
+
+    <!--   SQL模糊查询，使用like比较关键字，加上SQL里的通配符，请参考以下：
+       1、LIKE'Mc%' 将搜索以字母 Mc 开头的所有字符串（如 McBadden）。
+       2、LIKE'%inger' 将搜索以字母 inger 结尾的所有字符串（如 Ringer、Stringer）。
+       3、LIKE'%en%' 将搜索在任何位置包含字母 en 的所有字符串（如 Bennet、Green、McBadden）。
+       4、LIKE'_heryl' 将搜索以字母 heryl 结尾的所有六个字母的名称（如 Cheryl、Sheryl）。
+       5、LIKE'[CK]ars[eo]n' 将搜索下列字符串：Carsen、Karsen、Carson 和 Karson（如 Carson）。
+       6、LIKE'[M-Z]inger' 将搜索以字符串 inger 结尾、以从 M 到 Z 的任何单个字母开头的所有名称（如 Ringer）。
+       7、LIKE'M[^c]%' 将搜索以字母 M 开头，并且第二个字母不是 c 的所有名称（如MacFeather）。-->
+    <!--多条件查询-->
+    <select id="getUsers" resultType="com.nut2014.entity.User">
+        select * from user
+        <where>/*自动生成符合其中一个条件的SQL*/
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="userName != null">
+                AND userName like '${userName}%'
+            </if>
+            <if test="realName != null">
+                AND realName like '${realName}%'
+            </if>
+        </where>
+    </select>
+
+</mapper>

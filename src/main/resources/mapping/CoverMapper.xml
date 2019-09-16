@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nut2014.mapper.CoverMapper">
+
+    <!--**************增**********************************************************************-->
+    <insert id="add" parameterType="com.nut2014.entity.Cover">
+        INSERT INTO cover (
+            user_id,
+            coverImgPath,
+            coverDes,
+            likeNumber
+        ) VALUES (
+            #{user_id},
+            #{coverImgPath},
+            #{coverDes},
+            #{likeNumber}
+        );
+    </insert>
+
+    <!--**************删********************************************************-->
+    <delete id="delete">
+        delete from cover
+        where id = #{id}
+    </delete>
+
+    <!--**************改********************************************************-->
+    <update id="update" parameterType="com.nut2014.entity.Cover">
+        update cover
+        set
+            user_id   = #{user_id},
+            coverImgPath   = #{coverImgPath},
+            coverDes   = #{coverDes},
+            likeNumber = #{likeNumber}
+        where id = #{id}
+    </update>
+
+    <!--**************查********************************************************-->
+    <select id="get" resultType="com.nut2014.entity.Cover">select *
+                                                              from cover
+                                                              where id = #{id}</select>
+
+
+    <select id="getAll" resultType="com.nut2014.entity.Cover">select *
+                                                                 from cover</select>
+
+
+    <select id="getCoverInfo" resultMap="getCoverUser" resultType="com.nut2014.entity.Cover">
+ SELECT
+ cover.likeNumber,
+ cover.coverDes,
+ cover.coverImgPath,
+ cover.user_id,
+ user.avatarPath,
+ user.userName,
+ tag.name tagName
+ FROM
+ cover
+ LEFT JOIN user ON cover.user_id = user.id  LEFT JOIN tag ON cover.tag_id = tag.id
+ </select>
+
+
+    <!-- 左边标识代表bean里面的属性，右边标识和sql语句对应-->
+    <resultMap id="getCoverUser" type="com.nut2014.entity.Cover">
+
+        <id property="id" column="id"></id>
+        <result property="user_id" column="user_id"></result>
+        <result property="coverImgPath" column="coverImgPath"></result>
+        <result property="coverDes" column="coverDes"></result>
+        <result property="likeNumber" column="likeNumber"></result>
+        <!--映射关系，指定属性与属性的类型-->
+        <result property="avatarPath" column="avatarPath"></result>
+        <result property="userName" column="userName"></result>
+        <result property="tagName" column="tagName"></result>
+
+    </resultMap>
+
+    <resultMap id="getCoverUser2" type="com.nut2014.entity.Cover">
+        <id property="id" column="id"></id>
+        <result property="user_id" column="user_id"></result>
+        <result property="coverImgPath" column="coverImgPath"></result>
+        <result property="coverDes" column="coverDes"></result>
+        <result property="likeNumber" column="likeNumber"></result>
+        <!--映射关系，指定属性与属性的类型 cover 里面要有user 变量-->
+        <association property="user" javaType="com.nut2014.entity.User">
+            <id property="id" column="user_id"></id>
+            <result property="avatarPath" column="avatarPath"></result>
+        </association>
+    </resultMap>
+
+</mapper>
