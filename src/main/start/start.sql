@@ -22,6 +22,7 @@ CREATE TABLE `cover` (
   `coverImgPath` varchar(120) NOT NULL,
   `coverDes` varchar(120) NOT NULL,
   `likeNumber` int NOT NULL,
+  `tag_id` int(120) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -33,18 +34,3 @@ CREATE TABLE `myLog` (
   `update_time`  timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间' ,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
-/*蠕虫复制*/
-insert into user (userName, passWord,realName,avatarPath) select userName, passWord,realName,avatarPath from user;
-
-insert into cover (user_id, coverImgPath,coverDes,likeNumber,tag_id) select user_id, coverImgPath,coverDes,likeNumber,tag_id from cover;
-
-SELECT
-  cover.likeNumber,
-  cover.coverDes,
-  cover.coverImgPath,
-  cover.user_id,
-  user.avatarPath
-FROM
-  cover
-  LEFT JOIN user ON cover.user_id = user.id where cover.id=1

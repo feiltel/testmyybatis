@@ -8,12 +8,14 @@
             user_id,
             coverImgPath,
             coverDes,
-            likeNumber
+            likeNumber,
+            tag_id
         ) VALUES (
             #{user_id},
             #{coverImgPath},
             #{coverDes},
-            #{likeNumber}
+            #{likeNumber},
+            #{tag_id}
         );
     </insert>
 
@@ -55,7 +57,7 @@
  tag.name tagName
  FROM
  cover
- LEFT JOIN user ON cover.user_id = user.id  LEFT JOIN tag ON cover.tag_id = tag.id
+ LEFT JOIN user ON cover.user_id = user.id  LEFT JOIN tag ON cover.tag_id = tag.id  order by cover.id desc
  </select>
 
 

@@ -78,7 +78,7 @@ public class Cover implements Serializable {
     private String coverDes;
     private int likeNumber;
     private String tagName;
-    private int tagId;
+    private int tag_id;
 
 
     public String getAvatarPath() {
@@ -105,11 +105,11 @@ public class Cover implements Serializable {
         this.tagName = tagName;
     }
 
-    public int getTagId() {
-        return tagId;
+    public int getTag_id() {
+        return tag_id;
     }
 
-    public void setTagId(int tagId) {
-        this.tagId = tagId;
+    public void setTag_id(int tag_id) {
+        this.tag_id = tag_id;
     }
 }
