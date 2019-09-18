@@ -7,7 +7,7 @@ import com.nut2014.entity.Cover;
 import com.nut2014.pojo.BaseResponse;
 import com.nut2014.pojo.PageBaseResponse;
 import com.nut2014.service.CoverService;
-import com.vdurmont.emoji.EmojiParser;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +28,6 @@ public class CoverController implements BaseController<Cover> {
         if (cover == null) {
             return new BaseResponse<>(0, "失败", "");
         } else {
-            cover.setCoverDes(EmojiParser.parseToAliases(cover.getCoverDes()));
             cover.setTag_id(1);
         }
 

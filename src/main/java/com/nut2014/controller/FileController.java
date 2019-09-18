@@ -2,6 +2,7 @@ package com.nut2014.controller;
 
 import com.nut2014.config.ConfigResource;
 import com.nut2014.entity.MyLog;
+import com.nut2014.exception.UploadFileException;
 import com.nut2014.pojo.BaseResponse;
 
 import com.nut2014.utils.FileNameUtils;
@@ -32,7 +33,7 @@ public class FileController {
      * @return
      */
     @PostMapping("/upload")
-    public BaseResponse<String> upload(@RequestParam("file") MultipartFile file) {
+    public BaseResponse<String> upload(@RequestParam("file") MultipartFile file) throws UploadFileException {
         //图片按天分目录
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String datePathStr = sdf.format(new Date()) + "/";

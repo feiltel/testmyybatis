@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nut2014.mapper.AppVersionMapper">
+
+    <!--**************增**********************************************************************-->
+    <insert id="add" parameterType="com.nut2014.entity.AppVersion">
+        INSERT INTO appVersion (
+            updateInfo,
+            versionCode,
+            versionName,
+            downloadPath
+        ) VALUES (
+            #{updateInfo},
+            #{versionCode},
+            #{versionName},
+            #{downloadPath}
+        );
+    </insert>
+
+    <!--**************删********************************************************-->
+    <delete id="delete">
+        delete from appVersion
+        where id = #{id}
+    </delete>
+
+    <!--**************改********************************************************-->
+    <update id="update" parameterType="com.nut2014.entity.AppVersion">
+        update appVersion
+        set
+            updateInfo   = #{updateInfo},
+            versionCode   = #{versionCode},
+            versionName   = #{versionName},
+            downloadPath   = #{downloadPath}
+        where id = #{id}
+    </update>
+
+    <!--**************查********************************************************-->
+    <select id="get" resultType="com.nut2014.entity.AppVersion">select *
+                                                              from appVersion
+                                                              where id = #{id} </select>
+
+
+    <select id="getAll" resultType="com.nut2014.entity.AppVersion">select *
+                                                                 from appVersion order by id desc </select>
+
+
+</mapper>

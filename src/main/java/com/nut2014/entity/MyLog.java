@@ -20,6 +20,7 @@ public class MyLog implements Serializable {
     private static final long serialVersionUID = -3330851033429007657L;
 
     private int user_id;
+    private int id;
     private String content;
 
     public int getUser_id() {
@@ -58,4 +59,11 @@ public class MyLog implements Serializable {
     private Date update_time;
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
