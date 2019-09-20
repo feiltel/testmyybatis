@@ -45,6 +45,10 @@ public interface CoverDao {
             " from cover LEFT JOIN user ON cover.user_id = user.id  LEFT JOIN tag ON cover.tag_id = tag.id  order by cover.id desc")
     List<Cover> getCoverInfo();
 
+    @Select("select cover.likeNumber,cover.coverDes,cover.coverImgPath,cover.user_id,user.avatarPath,user.userName,tag.name tagName" +
+            " from cover LEFT JOIN user ON cover.user_id = user.id  LEFT JOIN tag ON cover.tag_id = tag.id   where cover.user_id =#{user_id} order by cover.id desc ")
+    List<Cover> getUserCoverInfo(@Param("user_id") int user_id);
+
     /*左边标识代表bean里面的属性，右边标识和sql语句对应*/
     @Results({
             @Result(property = "user_id", column = "user_id"),

@@ -28,6 +28,14 @@ public class UserController implements BaseController<User> {
     @RequestMapping("/add")
     @Override
     public BaseResponse<String> add(User user) {
+        if (user != null) {
+            if (user.getAvatarPath() == null || user.getAvatarPath().isEmpty()) {
+                user.setAvatarPath(configResource.getDefaultAvatarPath());
+            }
+            if (user.getRealName() == null || user.getRealName().isEmpty()) {
+                user.setRealName(user.getUserName());
+            }
+        }
         int sqlCode = dataService.add(user);
         return new BaseResponse<>(sqlCode, sqlCode > 0 ? "成功" : "失败", "");
     }
@@ -59,6 +67,7 @@ public class UserController implements BaseController<User> {
         List<User> coverList = dataService.getAll();
         return new BaseResponse<>(coverList != null ? 1 : 0, coverList != null ? "成功" : "失败", coverList);
     }
+
     @RequestMapping("/getAllPage")
     @Override
     public PageBaseResponse<List<User>> getAllPage(int pageNum) {

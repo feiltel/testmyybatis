@@ -31,4 +31,12 @@ public class LoginController {
 
     }
 
+    @RequestMapping("/outLogin")
+    public BaseResponse outLogin(String userName) {
+        User user = dataService.getUser(userName);
+        tokenService.outLogin(user);
+        return new BaseResponse<>(1, "退出登录成功", new User());
+
+    }
+
 }

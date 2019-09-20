@@ -17,14 +17,14 @@ insert into appVersion(updateInfo,versionCode,versionName,downloadPath)values ('
 drop table user;
 CREATE TABLE `user` (
   `id` int(32) NOT NULL AUTO_INCREMENT,
-  `userName` varchar(32) NOT NULL comment '用户名',
+  `userName` varchar(32) NOT NULL unique comment '用户名',
   `passWord` varchar(50) NOT NULL comment '密码',
-  `realName` varchar(32) DEFAULT NULL comment '真实名称',
-  `avatarPath` varchar(200) DEFAULT NULL comment '头像路径',
+  `realName` varchar(32) NOT NULL comment '真实名称',
+  `avatarPath` varchar(200) NOT NULL comment '头像路径',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
 
-insert into user(userName,passWord,realName,avatarPath)values ('admin','123456','admin','http://192.168.31.196/upload/app2.apl')
+insert into user(userName,passWord,realName)values ('admin','123456','admin')
 
 
 

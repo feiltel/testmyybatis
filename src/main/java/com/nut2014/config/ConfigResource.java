@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "com.nut2014.config")
 public class ConfigResource {
-    private String serverHost="";
+    private String serverHost = "";
     private String fileUploadPath;
     private String fileLocation;
 
@@ -33,5 +33,9 @@ public class ConfigResource {
 
     public void setFileLocation(String fileLocation) {
         this.fileLocation = fileLocation;
+    }
+
+    public String getDefaultAvatarPath() {
+        return getServerHost()+"/image/default_avator.png";
     }
 }

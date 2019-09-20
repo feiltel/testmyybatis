@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class CoverService implements BaseService<Cover> {
-    @Autowired
+    @Autowired(required = false)
     CoverDao coverMapper;
     // CoverMapper coverMapper;
 
@@ -42,6 +42,10 @@ public class CoverService implements BaseService<Cover> {
 
     public List<Cover> getCoverInfo() {
         return coverMapper.getCoverInfo();
+    }
+
+    public List<Cover> getUserCoverInfo(int userId) {
+        return coverMapper.getUserCoverInfo(userId);
     }
 
 }
