@@ -5,6 +5,7 @@ package com.nut2014.entity;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private String token;
     public User() {
     }
 
@@ -80,5 +81,13 @@ public class User implements Serializable {
 
     public void setAvatarPath(String avatarPath) {
         this.avatarPath = avatarPath;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

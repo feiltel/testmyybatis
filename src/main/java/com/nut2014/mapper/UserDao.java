@@ -17,22 +17,22 @@ public interface UserDao {
 
     @Insert("insert into user(userName,passWord,realName) values(#{userName},#{passWord},#{realName})")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
-    int addUser(User user);
+    int add(User user);
 
     /***************删***********************************************************************/
     @Delete("delete from user where id=#{id}")
-    int deleteUser(int id);
+    int delete(int id);
 
     /***************改***********************************************************************/
     @Update("update user set userName=#{userName} where id=#{id}")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
-    void updateUser(User user);
+    int update(User user);
 
     /***************查***********************************************************************/
     @Select("select * from user where id =#{id}")
-    User getUser(@Param("id") int id);
+    User get(@Param("id") int id);
 
 
     @Select("select * from user")
-    List<User> getAllUser();
+    List<User> getAll();
 }

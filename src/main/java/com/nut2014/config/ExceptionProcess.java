@@ -14,6 +14,7 @@ public class ExceptionProcess {
     @Autowired
     MyLogService logService;
 
+    //拦截所有的异常 返回数据 并写入操作日志
     @ExceptionHandler
     public BaseResponse<String> allException(Throwable t) {
         System.out.println(t.getMessage());

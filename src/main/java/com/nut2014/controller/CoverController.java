@@ -8,6 +8,7 @@ import com.nut2014.pojo.BaseResponse;
 import com.nut2014.pojo.PageBaseResponse;
 import com.nut2014.service.CoverService;
 
+import com.nut2014.verification.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,7 +63,7 @@ public class CoverController implements BaseController<Cover> {
         List<Cover> coverList = dataService.getAll();
         return new BaseResponse<>(coverList != null ? 1 : 0, coverList != null ? "成功" : "失败", coverList);
     }
-
+    @UserLoginToken
     @RequestMapping("/getAllPage")
     @Override
     public PageBaseResponse<List<Cover>> getAllPage(int pageNum) {
@@ -79,4 +80,6 @@ public class CoverController implements BaseController<Cover> {
         List<Cover> coverList = dataService.getCoverInfo();
         return new BaseResponse<>(coverList != null ? 1 : 0, coverList != null ? "成功" : "失败", coverList);
     }
+
+
 }

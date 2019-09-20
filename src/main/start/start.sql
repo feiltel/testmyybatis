@@ -1,3 +1,6 @@
+/*创建数据库*/
+create database test2 charset utf8mb4 COLLATE utf8mb4_general_ci;
+
 drop table appVersion;
 CREATE TABLE `appVersion` (
   `id` int(32) NOT NULL AUTO_INCREMENT,
@@ -6,9 +9,9 @@ CREATE TABLE `appVersion` (
   `versionName` varchar(125) DEFAULT NULL comment '版本名称',
   `downloadPath` varchar(256) DEFAULT NULL comment '下载地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
 /*插入初始化数据*/
-insert into appVersion(updateInfo,versionCode,versionName,downloadPath)values ('第一个版本',1,'0.0.1','http://192.168.31.196')
+insert into appVersion(updateInfo,versionCode,versionName,downloadPath)values ('第一个版本',1,'0.0.1','http://192.168.31.196/upload/app2.apl')
 
 
 drop table user;
@@ -19,7 +22,9 @@ CREATE TABLE `user` (
   `realName` varchar(32) DEFAULT NULL comment '真实名称',
   `avatarPath` varchar(200) DEFAULT NULL comment '头像路径',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
+
+insert into user(userName,passWord,realName,avatarPath)values ('admin','123456','admin','http://192.168.31.196/upload/app2.apl')
 
 
 
@@ -28,7 +33,9 @@ CREATE TABLE `tag` (
   `id` int(32) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
+
+insert into tag(name)values ('music')
 
 drop table cover;
 CREATE TABLE `cover` (
@@ -40,6 +47,9 @@ CREATE TABLE `cover` (
   `tag_id` int(120) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
+
+insert into cover(user_id,coverImgPath,coverDes,likeNumber,tag_id)values (1,'http://192.168.31.196::8080/image/default_avator.png',
+'这是第一张专辑',1,1)
 
 drop table myLog;
 CREATE TABLE `myLog` (

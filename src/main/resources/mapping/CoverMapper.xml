@@ -6,13 +6,13 @@
     <insert id="add" parameterType="com.nut2014.entity.Cover">
         INSERT INTO cover (
             user_id,
-            coverImgPath,
+            imgPath,
             coverDes,
             likeNumber,
             tag_id
         ) VALUES (
             #{user_id},
-            #{coverImgPath},
+            #{imgPath},
             #{coverDes},
             #{likeNumber},
             #{tag_id}
@@ -30,7 +30,7 @@
         update cover
         set
             user_id   = #{user_id},
-            coverImgPath   = #{coverImgPath},
+            imgPath   = #{imgPath},
             coverDes   = #{coverDes},
             likeNumber = #{likeNumber}
         where id = #{id}

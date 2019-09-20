@@ -1,16 +1,7 @@
 ####MySql 支持Emoji
 /*1.my.ini 增加配置*/
 /*
-[client]
-default-character-set = utf8mb4
-[mysql]
-default-character-set = utf8mb4
 
-[mysqld]
-character-set-client-handshake = FALSE
-character-set-server = utf8mb4
-collation-server = utf8mb4_unicode_ci
-init_connect='SET NAMES utf8mb4'
 */
 /*2.重启mysql服务*/
 /*显示数据库编码*/
@@ -20,6 +11,7 @@ ALTER DATABASE test CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 /*修改表编码*/
 ALTER TABLE cover CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
+
 /*蠕虫复制*/
 insert into user (userName, passWord,realName,avatarPath) select userName, passWord,realName,avatarPath from user;
 
@@ -28,7 +20,7 @@ insert into cover (user_id, coverImgPath,coverDes,likeNumber,tag_id) select user
 SELECT
   cover.likeNumber,
   cover.coverDes,
-  cover.coverImgPath,
+  cover.imgPath,
   cover.user_id,
   user.avatarPath
 FROM

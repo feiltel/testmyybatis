@@ -2,7 +2,7 @@ package com.nut2014.service;
 
 import com.nut2014.base.BaseService;
 import com.nut2014.entity.Cover;
-import com.nut2014.mapper.CoverMapper;
+import com.nut2014.mapper.CoverDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,9 @@ import java.util.List;
 @Service
 public class CoverService implements BaseService<Cover> {
     @Autowired
-    CoverMapper coverMapper;
+    CoverDao coverMapper;
+    // CoverMapper coverMapper;
+
 
     @Override
     public int add(Cover cover) {
@@ -38,7 +40,8 @@ public class CoverService implements BaseService<Cover> {
         return coverMapper.getAll();
     }
 
-    public List<Cover> getCoverInfo(){
+    public List<Cover> getCoverInfo() {
         return coverMapper.getCoverInfo();
     }
+
 }
