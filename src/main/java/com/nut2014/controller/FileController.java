@@ -57,6 +57,33 @@ public class FileController {
             return new BaseResponse<>(0, "上传失败", e.getMessage());
         }
     }
+    /**
+     * 上传图片
+     * @param file 文件
+     * @return
+     */
+    @PostMapping("/uploadApp")
+    public BaseResponse<String> uploadApp(@RequestParam("file") MultipartFile file,String apkName) throws UploadFileException {
 
+        //获取配置的目录
+        String path = configResource.getFileUploadPath() ;
+        //获取文件名
+        String fileName = apkName+".apk";
+        File newFile = new File(path + fileName);
+        //父目录不存在 自动创建
+        if (!newFile.getParentFile().exists()) {
+            boolean mkdir = newFile.getParentFile().mkdir();
+            if (!mkdir) {
+                return new BaseResponse<>(0, "文件读写错误", "");
+            }
+        }
+        try {
+            file.transferTo(newFile);
+            return new BaseResponse<>(1, "上传成功", configResource.getServerHost() + configResource.getFileLocation()  + fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new BaseResponse<>(0, "上传失败", e.getMessage());
+        }
+    }
 
 }
