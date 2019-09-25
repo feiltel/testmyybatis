@@ -32,6 +32,9 @@ public class UserController implements BaseController<User> {
             if (user.getAvatarPath() == null || user.getAvatarPath().isEmpty()) {
                 user.setAvatarPath(configResource.getDefaultAvatarPath());
             }
+            if (user.getBgImg() == null || user.getBgImg().isEmpty()) {
+                user.setBgImg(configResource.getDefaulUserBg());
+            }
             if (user.getRealName() == null || user.getRealName().isEmpty()) {
                 user.setRealName(user.getUserName());
             }

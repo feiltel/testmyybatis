@@ -25,8 +25,5 @@ public class TokenService {
         return token;
     }
 
-    public void outLogin(User user) {
-        JWT.create().withAudience(user.getId() + "").withExpiresAt(new Date())
-                .sign(Algorithm.HMAC256(user.getPassWord()+"1231"));
-    }
+
 }

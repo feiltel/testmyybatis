@@ -38,4 +38,7 @@ public class ConfigResource {
     public String getDefaultAvatarPath() {
         return getServerHost()+"/image/default_avator.png";
     }
+    public String getDefaulUserBg() {
+        return getServerHost()+"/image/cover_bg.jpeg";
+    }
 }

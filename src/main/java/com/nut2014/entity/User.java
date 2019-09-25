@@ -31,6 +31,7 @@ public class User implements Serializable {
     private String userName;
     private String passWord;
     private String realName;
+    private String bgImg;
 
     public Integer getId() {
         return id;
@@ -89,5 +90,13 @@ public class User implements Serializable {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getBgImg() {
+        return bgImg;
+    }
+
+    public void setBgImg(String bgImg) {
+        this.bgImg = bgImg;
     }
 }

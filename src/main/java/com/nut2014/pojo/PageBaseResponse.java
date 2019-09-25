@@ -43,4 +43,8 @@ public class PageBaseResponse<T> extends BaseResponse implements Serializable {
         this.pageNum = pageNum;
         this.pages = pages;
     }
+    public PageBaseResponse(int code, String msg, T data) {
+        super(code, msg, data);
+
+    }
 }

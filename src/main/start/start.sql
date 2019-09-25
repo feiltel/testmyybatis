@@ -21,6 +21,8 @@ CREATE TABLE `user` (
   `passWord` varchar(50) NOT NULL comment '密码',
   `realName` varchar(32) NOT NULL comment '真实名称',
   `avatarPath` varchar(200) NOT NULL comment '头像路径',
+  `bgImg` varchar(200) NOT NULL comment '主背景',
+  `token` varchar(200) DEFAULT  '' comment 'TOKEN',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
 

@@ -33,7 +33,9 @@ public interface CoverDao {
     int update(Cover cover);
 
     /***************查***********************************************************************/
-    @Select("select * from cover where id =#{id}")
+    @Select("select cover.likeNumber,cover.coverDes,cover.coverImgPath,cover.user_id,user.avatarPath,user.userName,tag.name tagName" +
+            " from cover LEFT JOIN user ON cover.user_id = user.id  LEFT JOIN tag ON cover.tag_id = tag.id "+
+            " where cover.id =#{id}")
     Cover get(@Param("id") int id);
 
 

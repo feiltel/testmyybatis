@@ -9,11 +9,15 @@
             userName,
             passWord,
             realName,
+            bgImg,
+            token,
             avatarPath
         ) VALUES (
             #{userName},
             #{passWord},
             #{realName},
+            #{bgImg},
+            #{token},
             #{avatarPath}
         );
     </insert>
@@ -31,6 +35,8 @@
             userName   = #{userName},
             passWord   = #{passWord},
             realName   = #{realName},
+            bgImg   = #{bgImg},
+            token   = #{token},
             avatarPath = #{avatarPath}
         where id = #{id}
     </update>

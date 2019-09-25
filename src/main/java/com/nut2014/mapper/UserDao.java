@@ -15,7 +15,7 @@ import java.util.List;
 public interface UserDao {
     /***************增***********************************************************************/
 
-    @Insert("insert into user(userName,passWord,realName) values(#{userName},#{passWord},#{realName})")
+    @Insert("insert into user(userName,passWord,realName,bgImg) values(#{userName},#{passWord},#{realName},#{bgImg})")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     int add(User user);
 

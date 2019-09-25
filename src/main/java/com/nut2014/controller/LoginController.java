@@ -4,6 +4,7 @@ import com.nut2014.entity.User;
 import com.nut2014.pojo.BaseResponse;
 import com.nut2014.service.TokenService;
 import com.nut2014.service.UserService;
+import com.nut2014.utils.MyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +23,10 @@ public class LoginController {
     public BaseResponse getUser(String userName, String passWord) {
         User user = dataService.getUser(userName);
         if (user != null) {
-            if (user.getPassWord().equalsIgnoreCase(passWord)) {
+            String passStr = MyUtils.MD5encode(userName + passWord);
+            if (user.getPassWord().equalsIgnoreCase(passStr)) {
                 user.setToken(tokenService.getToken(user));
+                dataService.update(user);
                 return new BaseResponse<>(1, "登录成功", user);
             }
         }
@@ -32,9 +35,10 @@ public class LoginController {
     }
 
     @RequestMapping("/outLogin")
-    public BaseResponse outLogin(String userName) {
-        User user = dataService.getUser(userName);
-        tokenService.outLogin(user);
+    public BaseResponse outLogin(int userId) {
+        User user = dataService.get(userId);
+        user.setToken("");
+        dataService.update(user);
         return new BaseResponse<>(1, "退出登录成功", new User());
 
     }

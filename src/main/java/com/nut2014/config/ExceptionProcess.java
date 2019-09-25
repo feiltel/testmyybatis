@@ -19,8 +19,15 @@ public class ExceptionProcess {
     public BaseResponse<String> allException(Throwable t) {
         System.out.println(t.getMessage());
         logService.add(new MyLog(0, "异常", t.getMessage()));
-        if (t.getMessage().equalsIgnoreCase("401")) {
-            return new BaseResponse<>(401, "登录过期", null);
+        String errStr = t.getMessage();
+        if (errStr.contains("401")) {
+            String[] split = errStr.split(",");
+            if (split.length > 1) {
+                return new BaseResponse<>(401, split[1], null);
+            } else {
+                return new BaseResponse<>(401, "登录过期", null);
+            }
+
         }
         return new BaseResponse<>(0, t.getMessage(), null);
     }
