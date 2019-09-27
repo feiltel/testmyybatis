@@ -40,7 +40,6 @@ public class LoginController {
         user.setToken("");
         dataService.update(user);
         return new BaseResponse<>(1, "退出登录成功", new User());
-
     }
 
 }

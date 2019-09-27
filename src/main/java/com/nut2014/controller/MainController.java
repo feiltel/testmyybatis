@@ -15,4 +15,5 @@ public class MainController {
         model.setViewName("index");
         return model;
     }
+
 }

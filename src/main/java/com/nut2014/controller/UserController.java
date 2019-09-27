@@ -10,7 +10,9 @@ import com.nut2014.pojo.BaseResponse;
 import com.nut2014.pojo.PageBaseResponse;
 import com.nut2014.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -82,5 +84,19 @@ public class UserController implements BaseController<User> {
         return new PageBaseResponse<>(0, "success", pageInfo.getList(), pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPages());
     }
 
+
+    @RequestMapping("/updateUserInfo")
+    @ResponseBody
+    public BaseResponse<String> updateInfo(@RequestBody User user) {
+        User myUser = dataService.get(user.getId());
+        if (user.getBgImg() != null && user.getBgImg().length() > 0) {
+            myUser.setBgImg(user.getBgImg());
+        }
+        if (user.getAvatarPath() != null && user.getAvatarPath().length() > 0) {
+            myUser.setAvatarPath(user.getAvatarPath());
+        }
+        int sqlCode = dataService.update(myUser);
+        return new BaseResponse<>(sqlCode, sqlCode > 0 ? "更新成功 " : "失败", "");
+    }
 
 }
