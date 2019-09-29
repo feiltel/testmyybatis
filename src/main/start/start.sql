@@ -44,6 +44,7 @@ CREATE TABLE  `cover` (
   `id` int(32) NOT NULL AUTO_INCREMENT,
   `user_id` int(120) NOT NULL,
   `coverImgPath` varchar(120) NOT NULL,
+  `coverMusicPath` varchar(120) NOT NULL,
   `coverDes` varchar(2000) NOT NULL,
   `likeNumber` int NOT NULL,
   `tag_id` int(120) NOT NULL,

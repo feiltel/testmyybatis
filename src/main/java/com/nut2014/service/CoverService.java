@@ -1,5 +1,6 @@
 package com.nut2014.service;
 
+import com.google.gson.Gson;
 import com.nut2014.base.BaseService;
 import com.nut2014.entity.Cover;
 import com.nut2014.mapper.CoverDao;
@@ -17,6 +18,7 @@ public class CoverService implements BaseService<Cover> {
 
     @Override
     public int add(Cover cover) {
+        System.out.println("222"+new Gson().toJson(cover));
         return coverMapper.add(cover);
     }
 

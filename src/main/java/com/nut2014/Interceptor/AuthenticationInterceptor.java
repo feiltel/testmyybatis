@@ -58,8 +58,12 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 if (user == null) {
                     throw new RuntimeException("401,用户不存在，请重新登录");
                 }
-                if (StringUtils.isBlank(user.getToken())){
-                    throw new RuntimeException("401,无token请重新登录");
+                if (StringUtils.isBlank(user.getToken())) {
+                    throw new RuntimeException("401,已退出登录，请重新登录");
+                }
+
+                if (!token.equalsIgnoreCase(user.getToken())){
+                    throw new RuntimeException("401,该账号已在其他设备登录");
                 }
                 // 验证 token
                 JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassWord())).build();

@@ -2,6 +2,7 @@ package com.nut2014.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
 import com.nut2014.base.BaseController;
 import com.nut2014.entity.Cover;
 import com.nut2014.pojo.BaseResponse;
@@ -26,6 +27,7 @@ public class CoverController implements BaseController<Cover> {
         if (cover == null) {
             return new BaseResponse<>(0, "失败", "");
         }
+        System.out.println("222"+new Gson().toJson(cover));
         int sqlCode = dataService.add(cover);
         return new BaseResponse<>(sqlCode, sqlCode > 0 ? "成功" : "失败", "");
     }

@@ -18,6 +18,7 @@ public class Cover implements Serializable {
         this.coverDes = coverDes;
         this.likeNumber = likeNumber;
     }
+
     private String avatarPath;
     private String userName;
 
@@ -61,20 +62,20 @@ public class Cover implements Serializable {
         this.likeNumber = likeNumber;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", user_id='" + user_id + '\'' +
-                ", coverImgPath='" + coverImgPath + '\'' +
-                ", coverDes='" + coverDes + '\'' +
-                ", likeNumber='" + likeNumber + '\'' +
-                '}';
-    }
 
     private int id;
     private int user_id;
     private String coverImgPath;
+
+    public String getCoverMusicPath() {
+        return coverMusicPath;
+    }
+
+    public void setCoverMusicPath(String coverMusicPath) {
+        this.coverMusicPath = coverMusicPath;
+    }
+
+    private String coverMusicPath;
     private String coverDes;
     private int likeNumber;
     private String tagName;

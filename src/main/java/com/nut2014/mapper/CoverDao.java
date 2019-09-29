@@ -16,9 +16,9 @@ public interface CoverDao {
 
     /***************增***********************************************************************/
 
-    @Insert("insert into cover(user_id,coverImgPath,coverDes,likeNumber,tag_id) " +
+    @Insert("insert into cover(user_id,coverImgPath,coverMusicPath,coverDes,likeNumber,tag_id) " +
             "values" +
-            "(#{user_id},#{coverImgPath},#{coverDes},#{likeNumber},#{tag_id})")
+            "(#{user_id},#{coverImgPath},#{coverMusicPath},#{coverDes},#{likeNumber},#{tag_id})")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     int add(Cover cover);
 
@@ -27,13 +27,13 @@ public interface CoverDao {
     int delete(int id);
 
     /***************改***********************************************************************/
-    @Update("update cover set user_id=#{user_id},coverImgPath=#{coverImgPath},coverDes=#{coverDes},likeNumber=#{likeNumber},tag_id=#{tag_id}" +
+    @Update("update cover set user_id=#{user_id},coverImgPath=#{coverImgPath},coverMusicPath=#{coverMusicPath},coverDes=#{coverDes},likeNumber=#{likeNumber},tag_id=#{tag_id}" +
             " where id=#{id}")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     int update(Cover cover);
 
     /***************查***********************************************************************/
-    @Select("select cover.likeNumber,cover.coverDes,cover.coverImgPath,cover.user_id,user.avatarPath,user.userName,tag.name tagName" +
+    @Select("select cover.likeNumber,cover.coverDes,cover.coverImgPath,coverMusicPath,cover.user_id,user.avatarPath,user.userName,tag.name tagName" +
             " from cover LEFT JOIN user ON cover.user_id = user.id  LEFT JOIN tag ON cover.tag_id = tag.id "+
             " where cover.id =#{id}")
     Cover get(@Param("id") int id);
@@ -43,11 +43,11 @@ public interface CoverDao {
     List<Cover> getAll();
 
 
-    @Select("select cover.likeNumber,cover.coverDes,cover.coverImgPath,cover.user_id,user.avatarPath,user.userName,tag.name tagName" +
+    @Select("select cover.likeNumber,cover.coverDes,cover.coverImgPath,coverMusicPath,cover.user_id,user.avatarPath,user.userName,tag.name tagName" +
             " from cover LEFT JOIN user ON cover.user_id = user.id  LEFT JOIN tag ON cover.tag_id = tag.id  order by cover.id desc")
     List<Cover> getCoverInfo();
 
-    @Select("select cover.likeNumber,cover.coverDes,cover.coverImgPath,cover.user_id,user.avatarPath,user.userName,tag.name tagName" +
+    @Select("select cover.likeNumber,cover.coverDes,cover.coverImgPath,coverMusicPath,cover.user_id,user.avatarPath,user.userName,tag.name tagName" +
             " from cover LEFT JOIN user ON cover.user_id = user.id  LEFT JOIN tag ON cover.tag_id = tag.id   where cover.user_id =#{user_id} order by cover.id desc ")
     List<Cover> getUserCoverInfo(@Param("user_id") int user_id);
 
@@ -55,13 +55,14 @@ public interface CoverDao {
     @Results({
             @Result(property = "user_id", column = "user_id"),
             @Result(property = "coverImgPath", column = "coverImgPath"),
+            @Result(property = "coverMusicPath", column = "coverMusicPath"),
             @Result(property = "coverDes", column = "coverDes"),
             @Result(property = "likeNumber", column = "likeNumber"),
             @Result(property = "avatarPath", column = "avatarPath"),
             @Result(property = "userName", column = "userName"),
             @Result(property = "tagName", column = "tagName")
     })
-    @Select("select cover.likeNumber,cover.coverDes,cover.coverImgPath,cover.user_id,user.avatarPath,user.userName,tag.name tagName" +
+    @Select("select cover.likeNumber,cover.coverDes,cover.coverImgPath,coverMusicPath,cover.user_id,user.avatarPath,user.userName,tag.name tagName" +
             " from cover LEFT JOIN user ON cover.user_id = user.id  LEFT JOIN tag ON cover.tag_id = tag.id  order by cover.id desc")
     List<Cover> getCovers();
 

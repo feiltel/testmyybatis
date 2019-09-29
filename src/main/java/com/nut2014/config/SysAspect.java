@@ -45,7 +45,7 @@ public class SysAspect {
         //记录请求的内容
         System.out.println("Aspect_URL:"+request.getRequestURL().toString());
         System.out.println("Aspect_Method:"+request.getMethod());
-        logService.add(new MyLog(0,"接口访问",request.getRequestURL().toString()+" 请求方法"+request.getMethod()));
+        //logService.add(new MyLog(0,"接口访问",request.getRequestURL().toString()+" 请求方法"+request.getMethod()));
     }
 
     @AfterReturning(returning = "ret" , pointcut = "log()")
@@ -54,6 +54,6 @@ public class SysAspect {
         //处理完请求后，返回内容
         String msg= "方法执行时间:"+ (System.currentTimeMillis() - startTime.get())+"  返回值:"+ new Gson().toJson(ret) ;
         System.out.println(msg);
-        logService.add(new MyLog(0,"接口访问",msg));
+       // logService.add(new MyLog(0,"接口访问",msg));
     }
 }
